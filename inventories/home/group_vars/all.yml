@@ -1,0 +1,2 @@
+pi:
+  shutdown_command: "/sbin/shutdown"

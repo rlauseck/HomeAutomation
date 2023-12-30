@@ -1,0 +1,13 @@
+---
+- name: Update pi
+  hosts: pihole
+  tasks:
+   - name: Update pi
+     ansible.builtin.shell: "{{ pi.shutdown_command }} -h now"
+     become: true
+     register: pi_shutdown_status
+
+   - name: Print pi shutdown status
+     ansible.builtin.debug:
+      msg: "{{ ppi_shutdown_status.stdout_lines }}"
+
