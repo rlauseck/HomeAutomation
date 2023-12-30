@@ -2,6 +2,7 @@
 - name: Update pihole
   hosts: pihole
   tasks:
+  
    - name: Update pihole software
      shell: pihole -up
      register: pihole_up_status
