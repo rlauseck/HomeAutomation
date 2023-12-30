@@ -1,0 +1,25 @@
+---
+- name: Update pi
+  hosts: pihole
+  tasks:
+   - name: Update pi
+     ansible.builtin.shell: sudo apt update && sudo apt upgrade -y
+     register: pi_update_status
+
+   - name: Print pi update status
+     ansible.builtin.debug:
+      msg: "{{ pi_update_status.stdout_lines }}"
+
+   - name: Print OS family
+     ansible.builtin.debug:
+      msg: "{{ ansible_os_family }}"
+
+   - name: Reboot pi
+     shell: nohup bash -c "/bin/sleep 5 && /sbin/shutdown -r now" &
+     become: true
+     register: pi_reboot_status
+
+   - name: Print reboot status
+     ansible.builtin.debug:
+      msg: "{{ pi_reboot_status.stdout_lines }}"
+
